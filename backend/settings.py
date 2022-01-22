@@ -16,6 +16,7 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 import os
+import django_heroku
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -24,7 +25,7 @@ import os
 SECRET_KEY = 'django-insecure-xtiw7gh7u^ege*wdy_wd1d(#c13)s7ah_k+bg=x%mpnm+kyc*t'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = FALSE
 
 # ALLOWED_HOSTS = ["localhost"]
 
@@ -98,11 +99,21 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': str(os.path.join(BASE_DIR, "db.sqlite3")),
+#         # 'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': str(os.path.join(BASE_DIR, "db.sqlite3")),
-        # 'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME':'d13o0br9v9h6g8',
+        'USER':'xroxylwvjhlygf',
+        'PASSWORD':'69b434f8db847896502d637d92a8943770c79b1a2c5ee3d2b4e76b664fd978ef',
+        'HOST':'ec2-3-225-41-234.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
 
@@ -161,7 +172,7 @@ BASE_DIR / 'frontend/build/static'
      ]
 MEDIA_ROOT = os.path.join(BASE_DIR, '/static/images')
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
+django_heroku.settings(locals())
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 SUMMERNOTE_THEME = 'bs4'    # Use Bootstrap4 theme
 # Static files (CSS, JavaScript, Images)
