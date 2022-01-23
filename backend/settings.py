@@ -46,10 +46,12 @@ INSTALLED_APPS = [
     'django_summernote',
     'rest_framework',
     'rest_framework_simplejwt',
+    'whitenoise.runserver_nostatic'
 
 ]
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.common.BrokenLinkEmailsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
