@@ -10,6 +10,8 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 from datetime import timedelta
+from decouple import config
+import dj_database_url
 
 from pathlib import Path
 
@@ -27,7 +29,7 @@ SECRET_KEY = 'django-insecure-xtiw7gh7u^ege*wdy_wd1d(#c13)s7ah_k+bg=x%mpnm+kyc*t
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["isiolotimes.herokuapp.com"]
+ALLOWED_HOSTS = ["texasblog.herokuapp.com"]
 
 
 # Application definition
@@ -109,13 +111,16 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME':'d13o0br9v9h6g8',
-        'USER':'xroxylwvjhlygf',
-        'PASSWORD':'69b434f8db847896502d637d92a8943770c79b1a2c5ee3d2b4e76b664fd978ef',
-        'HOST':'ec2-3-225-41-234.compute-1.amazonaws.com',
+        'NAME':config('DB_NAME'),
+        'USER':config('USER_NAME'),
+        'PASSWORD':config('PASSWORD'),
+        'HOST':config('HOST'),
         'PORT': '5432',
     }
 }
+
+db_from_env = dj_database_url.config(conn_max_age=600)
+DATABASES['default'].update(db_from_env)
 
 
 # Password validation
